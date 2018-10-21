@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Update Student | University Student Database App</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+  <link rel="icon" href="{{ url_for('static', filename = 'favicon.ico')}}">
+<!--
+  <link href="../static/style1.css" rel="stylesheet">
+  -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'style1.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'style.css')}}">
+
+</head>
+
+<body id="add_main">
+
+<center>
+
+<nav class="navbar navbar-expand-md navbar-light bg-light ">
+<div class="container-fluid">
+	<a class="navbar-brand" href="/"><img src="{{url_for('static', filename='logo.png')}}" ></a>
+		
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item">
+				<a class="nav-link" href="/"><i class="fas fa-home"></i> Home  | </a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/view"><i class="fas fa-users"></i> Student Table  | </a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/view_course"><i class="fas fa-table"></i> Course Table  | </a>
+			</li>
+		</ul>
+
+	
+</div>
+</nav>
+
+<div class="container-fluid main" >
+
+<div>
+	<h1 class="add_head"> {{msg}} </h1><br>
+</div>
+
+<div>
+            <table id="stud_table" style="width:80%">
+
+            <tr>
+              <th>ID Number</th>
+              <th>First Name</th>
+              <th>Middle Name</th>
+              <th>Last Name</th> 
+              <th>Sex</th>
+              <th>Course</th>
+              <th>Year Level</th> 
+          
+            </tr>
+                <tr>
+                   <td>{{ copied[0]}}</td>
+                   <td>{{ copied[1]}}</td>
+                   <td>{{ copied[2]}}</td>
+                   <td>{{ copied[3]}}</td>
+                   <td>{{ copied[4]}}</td>
+                   <td>{{ copied[5]}}</td>
+                   <td>{{ copied[6]}}</td>
+
+                </tr>
+               
+                </table>
+              </div>
+
+<div class="add_form">    
+    <form action="{{url_for('update_submit')}}" method = "post">
+        <div class="form-body">
+          <label id="ID-Old">Old ID No.  :</label>
+          <input type="text" name = "ID_old" value="{{ copied[0]}}" readonly="readonly"  align="left" >
+          <br>
+          <label id="FName">First Name:</label>
+          <input type="text" name="F_Name" placeholder="Ex. Juan ,   . . ." align="right" >
+          <br>
+          <label id="LName">Last Name:</label>
+          <input type="text" name="L_Name" placeholder="Ex. De la Cruz ,   . . ." align="right" >
+          <br>
+          <label id="MName">Middle Name:</label>
+          <input type="text" name= "M_Name" placeholder="Ex.  Rivera ,   . . ." align="right" >
+          <br>
+          <label id="Sex">Sex:</label>
+          <input type="text" name = "sex" placeholder="Ex. Male ,   . . ." align="right" >
+          <br>
+          <label id="course">Course:</label>
+          <input type="text" name= "course" placeholder="Ex. BS CpE ,   . . ." align="right" >
+          <br>
+          <label id="Yr">Year Level:</label>
+          <input type="text" name= "Yr_Level" placeholder="Ex. IV ,   . . ." align="right" >
+          <br>
+          <br>
+          <button class="btn btn-warning btn-lg" id="add_submit"> <i class="far fa-id-card"></i> Update </button>
+        </div>
+      </form>
+</div>
+<div class="add_btn">
+	
+
+      <br>
+     <button class="btn btn-success btn-lg" id="add_cancel" onclick="window.location.href='/'"> <i class="fas fa-user"></i> Back</button><br>
+</div>
+	
+</div>
+
+</center>
+
+
+</body>
+
+<footer>
+	
+</footer>
+
+
+</html>

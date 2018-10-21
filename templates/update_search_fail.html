@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Add Student | University Student Database App</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+<link rel="icon" href="{{ url_for('static', filename = 'favicon.ico')}}">	
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'style1.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'style.css')}}">
+</head>
+
+<body>
+
+<center>
+
+<nav class="navbar navbar-expand-md navbar-light bg-light ">
+<div class="container-fluid">
+	<a class="navbar-brand" href="/"><img src="{{url_for('static', filename='logo.png')}}" ></a>
+		
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item">
+				<a class="nav-link" href="/"><i class="fas fa-home"></i> Home  | </a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/view"><i class="fas fa-users"></i> Student Table  | </a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/view_course"><i class="fas fa-table"></i> Course Table | </a>
+			</li>
+			
+		</ul>
+
+	
+</div>
+</nav>
+
+<div class="carousel-inner main" id="add_main">
+
+<div>
+	<br><h1 class="add_head"> {{msg}} </h1>
+</div>
+
+<div>
+            <table id="stud_table" style="width:80%">
+
+            <tr>
+              <th>ID Number</th>
+              <th>First Name</th>
+              <th>Middle Name</th>
+              <th>Last Name</th> 
+              <th>Sex</th>
+              <th>Course</th>
+              <th>Year Level</th> 
+          
+            </tr>
+                <tr>
+                   <td>{{ copied[0]}}</td>
+                   <td>{{ copied[1]}}</td>
+                   <td>{{ copied[2]}}</td>
+                   <td>{{ copied[3]}}</td>
+                   <td>{{ copied[4]}}</td>
+                   <td>{{ copied[5]}}</td>
+                   <td>{{ copied[6]}}</td>
+
+                </tr>
+               
+                </table>
+              </div>
+
+
+<div class="add_btn">
+	
+      <br>
+     <button class="btn btn-outline-light btn-lg" id="add_cancel" onclick="window.location.href='/'"> <i class="fas fa-user"></i> Back</button>
+</div>
+	
+</div>
+
+</center>
+
+
+</body>
+
+<footer>
+	
+</footer>
+
+
+</html>

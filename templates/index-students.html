@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+
+
+
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Manage Students | University Student Database App</title>
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+	<link rel="icon" href="{{ url_for('static', filename = 'favicon.ico')}}">
+<!--
+	<link href="../css/style.css" rel="stylesheet">
+	<link href="../css/style1.css" rel="stylesheet">
+-->
+	
+
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'style1.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'style.css')}}">
+
+</head>
+
+<body class="bod">
+
+
+<center>
+
+<nav class="navbar navbar-expand-md navbar-light bg-light ">
+<div class="container-fluid">
+	<a class="navbar-brand" href="/"><img src="{{url_for('static', filename='logo.png')}}" ></a>
+		
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item">
+				<a class="nav-link" href="/"><i class="fas fa-home"></i> Home  | </a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/view"><i class="fas fa-users"></i> Student Table  | </a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/view_course"><i class="fas fa-table"></i> Course Table  | </a>
+			</li>
+			
+		</ul>
+
+	
+</div>
+</nav>
+
+<!--- Image Slider -->
+	<div id="slides" class="carousel slide" data-ride="carousel">
+	<ul class="carousel-indicators">
+	<li data-target="#slides" data-slide-to="0" class="active"></li>
+	<li data-target="#slides" data-slide-to="1" ></li>
+	<li data-target="#slides" data-slide-to="2" ></li>
+	</ul>	
+	<div class="carousel-inner">
+	<div class="carousel-item active" >
+		<img src="{{url_for('static', filename='background1.jpeg')}}">
+		<div class="carousel-caption">
+			<h1 class="display-2"> manage students </h1>
+			<br>
+			<button type="button" class="btn btn-outline-light btn-lg" onclick="window.location.href='/add'"> <i class="fas fa-user-plus"></i> CREATE </button>
+			<button type="button" class="btn btn-outline-light btn-lg" onclick="window.location.href='/update'"> <i class="far fa-id-card"></i> UPDATE </button>
+			<button type="button" class="btn btn-outline-light btn-lg" onclick="window.location.href='/delete'"> <i class="fas fa-user-times"></i> DELETE </button>
+			<button type="button" class="btn btn-outline-light btn-lg" onclick="window.location.href='/search'"> <i class="fa fa-search"></i> SEARCH </button>
+		</div>
+	</div>
+	<div class="carousel-item">
+		<img src="{{url_for('static', filename='background2.jpg')}}">
+		<div class="carousel-caption">
+			<h1 class="display-2"> manage students </h1>
+			<br>
+			<button type="button" class="btn btn-outline-light btn-lg" onclick="window.location.href='/add'"> <i class="fas fa-user-plus"></i> CREATE </button>
+			<button type="button" class="btn btn-outline-light btn-lg" onclick="window.location.href='/update'"> <i class="far fa-id-card"></i> UPDATE </button>
+			<button type="button" class="btn btn-outline-light btn-lg" onclick="window.location.href='/delete'"> <i class="fas fa-user-times"></i> DELETE </button>
+			<button type="button" class="btn btn-outline-light btn-lg" onclick="window.location.href='/search'"> <i class="fa fa-search"></i> SEARCH </button>
+		</div>
+	</div>
+	<div class="carousel-item">
+		<img src="{{url_for('static', filename='background3.jpg')}}">
+		<div class="carousel-caption">
+			<h1 class="display-2"> manage students </h1>
+			<br>
+			<button type="button" class="btn btn-outline-light btn-lg" onclick="window.location.href='/add'"> <i class="fas fa-user-plus"></i> CREATE </button>
+			<button type="button" class="btn btn-outline-light btn-lg" onclick="window.location.href='/update'"> <i class="far fa-id-card"></i> UPDATE </button>
+			<button type="button" class="btn btn-outline-light btn-lg" onclick="window.location.href='/delete'"> <i class="fas fa-user-times"></i> DELETE </button>
+			<button type="button" class="btn btn-outline-light btn-lg" onclick="window.location.href='/search'"> <i class="fa fa-search"></i> SEARCH </button>
+		</div>
+	</div>
+	</div>
+	</div>
+
+	<!--- Footer -->
+<footer>
+	<div class="container-fluid padding">
+		<div class="row text-center">
+			
+			<div class="col-md-4">
+				
+				<hr class="light">
+				<h5>CSC 151/181 Assignment</h5>
+				<hr class="light">
+				<p>By Efren Tabuada</p>
+				<p>1st Semester</p>
+				<p> AY 2017-2018</p>
+				
+			</div>
+
+			<div class="col-md-4">
+				
+				<hr class="light">
+				<h5>CAROUSEL IMAGE CREDITS</h5>
+				<hr class="light">
+				<p>
+					<a class="foot-link" href="http://i0.wp.com/thewrightconsult.com/wp-content/uploads/2017/04/cropped-background-2-pc-computer-apple-screen-159785.jpeg">Cropped background Computer Apple Screen</a>
+				</p>
+				<p>
+					<a class="foot-link" href="http://www.gbrokers.uz/ru/#home">Genius Brokers</a>
+				</p>
+				<p>
+					<a class="foot-link" href="https://www.stressreliefgadgets.com/page/2/">Cool Gadget Reviews for Stress Relief</a>
+				</p>
+			</div>
+
+			<div class="col-md-4">
+				
+				<hr class="light">
+				<h5>Contact Us</h5>
+				<hr class="light">
+				<p>studentdatabase@universityrecords.com</p>
+				<p>Tibanga, 9200 Iligan City</p>
+				<p>Lanao del Norte</p>
+				
+			</div>
+
+			<div class="col-12">
+				<hr class="light-100">
+				<h5>&copy; University Student Records</h5>
+			</div>
+		</div>
+	</div>
+</footer>
+
+</center>
+
+</body>
+
+
+</html>
