@@ -109,33 +109,33 @@ def delete():
 def delete_result():
     if request.method == "POST":
         try:
-            id_number = request.form['ID_Num']
+            SearchKey = request.form['ID_Num'].upper()
             with sql.connect("database.db") as conn:
                 cur = conn.cursor()
-                cur.execute("SELECT * FROM student")
-                for row in cur.fetchall():
-                    if row[0] == id_number:
-                        cur.execute("DELETE FROM student WHERE IDNum = ?", (id_number,))
-                        conn.commit()
-                        msg = "Successfully Deleted"
-                        flag=1
-                        break
-                    else:
-                        flag=0
-                        msg = "Error! Student not found."
+                cur.execute("SELECT * FROM student where IDNum = ? or FName = ? or LName=? or MName=?  or Sex=? or YrLevel=? or Course=?", (SearchKey, SearchKey, SearchKey, SearchKey, SearchKey, SearchKey, SearchKey ))
+                result = cur.fetchall()
+                if len(result)>0:
+                    flag = 1
+                    print("Student/s found!")
+                    print(len(result))
+                    cur.execute("DELETE FROM student where IDNum = ? or FName = ? or LName=? or MName=?  or Sex=? or YrLevel=? or Course=?", (SearchKey, SearchKey, SearchKey, SearchKey, SearchKey, SearchKey, SearchKey ))
+                    conn.commit()
+                    msg = "Successfully Deleted."
+                    print("Successfully Deleted.")
+                else:
+                    flag = 0
+                    print(len(result))
+                    msg = "Error! Student not found."
+                    print("Student not found.")
         except:
-            msg = "Fail to delete"
-            
+            msg = "Failed to delete"
         finally:
-            if flag == 1:
-                conn = sql.connect("database.db")
-                conn.row_factory = sql.Row
-                cur = conn.cursor()
-                cur.execute("SELECT * FROM student")
-                rows = cur.fetchall()
-            else:
-                rows = " "
-            return render_template("add_result.html", rows=rows, msg=msg,)
+            conn = sql.connect("database.db")
+            conn.row_factory = sql.Row
+            cur = conn.cursor()
+            cur.execute("SELECT * FROM student")
+            rows = cur.fetchall()
+            return render_template("add_result.html", rows=rows, msg=msg)
         conn.close()
 # -- End of Delete Methods --
 
@@ -157,28 +157,41 @@ def update_search():
             id_number = request.form['ID_Num']
             with sql.connect("database.db") as conn:
                 cur = conn.cursor()
+                print("execute select all students")
                 cur.execute("SELECT * FROM student")
-                for row in cur.fetchall():
-                    if row[0] == id_number:
+                stud = cur.fetchall()
+                print("stored in stud")
+                print("execute select all courses")
+                cur.execute("SELECT * FROM courses")
+                options = cur.fetchall()
+                print("stored in options")
+                for row in stud:
+                    print("entered for loop")
+                    if row[0] == id_number: # search using ID number only
+                        print("entered if")
                         copied = row
                         msg = " Student Found!"
                         flag = 1
                         break
                     else:
+                        print("entered else")
                         msg = "Error! Student not found."
                         flag=0
                         copied = " "
-
         except:
             msg1 = "ERROR"
             msg2 = " "
             copied = " "
         finally:
-            if flag == 1:
-                return render_template("update_info.html", msg =msg, copied=copied, id_number=id_number, )
+            if flag == 1: 
+                print("entered flag 1 in finally")
+                print(stud)
+                print(options)
+                return render_template("update_info.html", msg =msg, copied=copied, options=options )
                 conn.close()
             else:
-                return render_template("update_search_fail.html", msg =msg, copied=copied, id_number=id_number, )
+                print("entered flag 0 in finally")
+                return render_template("update_search_fail.html", msg =msg, copied=copied )
                 conn.close()
 
 @app.route("/update_submit",methods = ['POST', 'GET'])
@@ -204,27 +217,35 @@ def update_submit():
                             print("entered after pragma")
                             cur.execute("UPDATE student set Course = ? where IDNum = ?",( course, id_old))
                         if(len(firstname)>0):
+                            print("entered in FName")
                             cur.execute("UPDATE student set FName = ? where IDNum = ?",( firstname, id_old))
                         if(len(lastname)>0):
+                            print("entered in LName")
                             cur.execute("UPDATE student set LName = ? where IDNum = ?",( lastname, id_old))
                         if(len(middle)>0):
+                            print("entered in MName")
                             cur.execute("UPDATE student set MName = ? where IDNum = ?",( middle, id_old))
                         if(len(sex)>0):
+                            print("entered in sex")
                             cur.execute("UPDATE student set Sex = ? where IDNum = ?",( sex, id_old))
                         if(len(Yr)>0):
+                            print("entered in YrLevel")
                             cur.execute("UPDATE student set YrLevel = ? where IDNum = ?",( Yr, id_old))
                         conn.commit()
-                        msg = "successfully UPDATED"
+                        msg = "Successfully updated."
+                        print("msg = success")
                         break
         except:
-            msg = "FAIL to UPDATE"
+            msg = "Failed to update due to foreign key constraint."
+            print("msg = fail")
         finally:
+            print("entered in finally")
             conn = sql.connect("database.db")
             conn.row_factory = sql.Row
             cur = conn.cursor()
             cur.execute("SELECT * FROM student")
             rows = cur.fetchall()
-            return render_template("update_success.html", rows=rows, )
+            return render_template("update_success.html", rows=rows, msg=msg )
             conn.close()
 # -- End of Update Methods --
 
