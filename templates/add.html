@@ -56,10 +56,26 @@
 	
     <form action="{{url_for('add_submit')}}" method = "post">
 		<div class="form-body"> 
-          <br><label id="IDNum">ID No. :</label>
-          <input type="text" name = "ID_Num" placeholder="Ex. 2014-1234 ,   . . ." align="left" required>
-          
-          <br>
+			<br><label id="IDNum" style = "margin-left:0;">ID No. :</label>
+			<select name="IDNumYr"  style="width: 115px; height: 35px; border: 3px solid #ccc; padding-left:0;">
+				  <option >2018</option>
+				  <option >2017</option>
+				  <option >2016</option>
+				  <option >2015</option>
+				  <option >2014</option>
+				  <option >2013</option>
+				  <option >2012</option>
+				  <option >2011</option>
+				  <option >2009</option>
+				  <option >2008</option>
+				  <option >2007</option>
+				  <option >2006</option>
+				  <option >2005</option>
+				  <option >2004</option>
+				  <option >2003</option>
+			  </select> -
+			  <input type="Numbers" name = "ID_Num_Dig" maxlength="4" pattern="[0-9]{4}" align="left" style="width: 115px; height: 35px; border: 3px solid #ccc;" required>
+			  <br>
           <label id="FName">First Name:</label>
           <input type="text" name="F_Name" placeholder="Ex. Juan ,   . . ." align="right" >
           <br>

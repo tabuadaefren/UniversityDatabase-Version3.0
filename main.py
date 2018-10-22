@@ -53,7 +53,9 @@ def add():
 def add_submit(): 
     if request.method == "POST":
         try: 
-            id_number = request.form['ID_Num']
+            idYr = request.form['IDNumYr']
+            idDig = request.form['ID_Num_Dig']
+            id_number = idYr + '-' + idDig
             firstname = request.form['F_Name'].upper()
             middle = request.form['M_Name'].upper()
             lastname = request.form['L_Name'].upper()
